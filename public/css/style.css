@@ -175,16 +175,45 @@ img {
 }
 
 .brand-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.65rem;
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #ffffff;
+  text-decoration: none;
+  transition: opacity var(--trans-fast);
 }
 
-.brand-logo span {
+.brand-logo:hover {
+  opacity: 0.95;
+}
+
+.brand-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.4));
+  transition: transform var(--trans-normal), filter var(--trans-normal);
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: rotate(6deg) scale(1.08);
+  filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.6));
+}
+
+.brand-text {
+  display: inline-flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.brand-logo span,
+.brand-highlight {
   color: var(--accent-emerald);
 }
 

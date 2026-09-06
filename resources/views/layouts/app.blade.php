@@ -18,8 +18,11 @@
     <meta property="og:type" content="website">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon-192x192.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/Logo.png') }}?v={{ time() }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v={{ time() }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/Logo.png') }}">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
@@ -34,8 +37,9 @@
     <!-- Top Navigation Bar -->
     <header class="site-header">
         <div class="container nav-container">
-            <a href="{{ route('home') }}" class="brand-logo">
-                Andri<span>Dev.</span>
+            <a href="{{ route('home') }}" class="brand-logo" aria-label="Beranda Andri Dev">
+                <img src="{{ asset('images/Logo.png') }}" alt="Logo Andri" class="brand-logo-img">
+                <span class="brand-text">Andri&nbsp;<span class="brand-highlight">Dev.</span></span>
             </a>
 
             <nav>
