@@ -668,10 +668,16 @@
             <div class="projects-grid">
                 @foreach($projects as $index => $project)
                     <div class="project-card reveal-on-scroll delay-{{ ($index % 3) + 1 }}" data-category="{{ $project->category }}">
-                        <div class="project-thumb-wrap">
+                        <a href="{{ $project->demo_url && $project->demo_url !== '#' ? $project->demo_url : '#' }}"
+                           @if($project->demo_url && $project->demo_url !== '#') target="_blank" rel="noopener noreferrer" @endif
+                           class="project-thumb-wrap"
+                           title="Buka Website {{ $project->title }} (Live)">
                             <span class="project-num-badge">#0{{ $index + 1 }}</span>
-                            <img src="{{ asset($project->thumbnail) }}" alt="{{ $project->title }}" class="project-thumb">
-                        </div>
+                            <img src="{{ asset($project->thumbnail) }}" alt="{{ $project->title }}" class="project-thumb" loading="lazy">
+                            <div class="project-thumb-overlay">
+                                <span>🌐 Kunjungi Website ↗</span>
+                            </div>
+                        </a>
 
                         <div class="project-content">
                             <div class="project-tags">
@@ -682,15 +688,30 @@
                                 @endif
                             </div>
 
-                            <h3 class="project-title">{{ $project->title }}</h3>
+                            <h3 class="project-title">
+                                @if($project->demo_url && $project->demo_url !== '#')
+                                    <a href="{{ $project->demo_url }}" target="_blank" rel="noopener noreferrer" class="project-title-link" title="Buka {{ $project->title }}">
+                                        {{ $project->title }}
+                                    </a>
+                                @else
+                                    {{ $project->title }}
+                                @endif
+                            </h3>
                             <p class="project-summary">{{ $project->summary }}</p>
 
                             <div class="project-footer">
                                 <span style="font-size: 0.8rem; color: var(--text-muted);">{{ $project->category }}</span>
-                                <a href="https://wa.me/628569052928?text={{ urlencode('Halo Mas Andrian, saya tertarik ingin bertanya tentang proyek: ' . $project->title) }}"
-                                    target="_blank" class="project-action-link">
-                                    <span>Tanya Tentang Proyek</span> →
-                                </a>
+                                <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+                                    @if($project->demo_url && $project->demo_url !== '#')
+                                        <a href="{{ $project->demo_url }}" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Buka Website {{ $project->title }}">
+                                            <span>Live Web</span> ↗
+                                        </a>
+                                    @endif
+                                    <a href="https://wa.me/628569052928?text={{ urlencode('Halo Mas Andrian, saya tertarik ingin bertanya tentang proyek: ' . $project->title) }}"
+                                        target="_blank" class="project-action-link">
+                                        <span>Tanya Proyek</span> →
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
